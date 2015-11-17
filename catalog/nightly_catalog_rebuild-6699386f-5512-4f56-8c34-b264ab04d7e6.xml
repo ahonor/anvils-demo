@@ -7,7 +7,7 @@
         </option>
       </options>
     </context>
-    <description>rebuild the catalog data</description>
+    <description>rebuild the catalog data.</description>
     <dispatch>
       <excludePrecedence>true</excludePrecedence>
       <keepgoing>true</keepgoing>
