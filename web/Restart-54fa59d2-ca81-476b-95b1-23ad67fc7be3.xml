@@ -26,7 +26,7 @@
     <sequence keepgoing='false' strategy='node-first'>
       <command>
         <description>Stop the service</description>
-        <jobref group='anvils/web' name='stop'>
+        <jobref group='web' name='stop'>
           <arg line='-dir ${option.dir} -method ${option.method}' />
         </jobref>
       </command>
@@ -42,7 +42,7 @@
       </command>
       <command>
         <description>Start the service</description>
-        <jobref group='anvils/web' name='start'>
+        <jobref group='web' name='start'>
           <arg line='-dir ${option.dir}' />
         </jobref>
       </command>
