@@ -5,7 +5,7 @@
         <option enforcedvalues='true' name='dir' required='true' valuesUrl='http://localhost/anvils/options/anvils-dir.json' />
       </options>
     </context>
-    <description>start the web servers</description>
+    <description>Start the web servers!!</description>
     <dispatch>
       <excludePrecedence>true</excludePrecedence>
       <keepgoing>true</keepgoing>
