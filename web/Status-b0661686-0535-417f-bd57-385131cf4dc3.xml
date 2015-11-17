@@ -34,12 +34,32 @@
         </node-step-plugin>
       </command>
       <command>
-        <description>Process status</description>
         <errorhandler keepgoingOnSuccess='true'>
           <exec>echo "Continuing..."</exec>
         </errorhandler>
+        <script><![CDATA[#!/bin/bash
+#/ usage: status.sh ?dir?
+
+set -eu
+
+(( $# != 1 )) && {
+	grep '^#/ usage:' <"$0" | cut -c4- >&2
+	exit 2	
+}
+DIR=$1
+[[ ! -f $DIR/pid ]] && { echo DOWN; exit 1; }
+
+PID=$(< $DIR/pid)
+
+if [[ -z "${PID:-}" ]]
+then
+	echo "DOWN"; exit 1;
+else 
+	echo "RUNNING"
+fi	
+
+exit $?]]></script>
         <scriptargs>${option.dir}</scriptargs>
-        <scripturl>http://localhost/anvils/scripts/status.sh</scripturl>
       </command>
     </sequence>
     <uuid>b0661686-0535-417f-bd57-385131cf4dc3</uuid>

@@ -26,11 +26,41 @@
     <sequence keepgoing='false' strategy='node-first'>
       <command>
         <errorhandler keepgoingOnSuccess='true'>
+          <script><![CDATA[#!/bin/bash
+#/ usage: kill.sh ?dir?
+
+set -eu
+
+(( $# != 1 )) && {
+	grep '^#/ usage:' <"$0" | cut -c4- >&2
+	exit 2	
+}
+DIR=$1
+
+echo 'Web killed!']]></script>
           <scriptargs>${option.dir}</scriptargs>
-          <scripturl>http://localhost/anvils/scripts/kill.sh</scripturl>
         </errorhandler>
+        <script><![CDATA[#!/bin/bash
+#/ usage: stop.sh ?dir? ?method? 
+
+set -eu
+
+(( $# != 2 )) && {
+	grep '^#/ usage:' <"$0" | cut -c4- >&2
+	exit 2
+}
+DIR=$1
+METHOD=$2
+
+if [[ -f $DIR/pid ]]
+then	
+	PID=$(< $DIR/pid)	
+	echo "kill $PID"
+	rm -f $DIR/pid
+	echo "- Web stopped (pid=${PID}) using method: $METHOD" | tee -a $DIR/log
+fi
+]]></script>
         <scriptargs>${option.dir} ${option.method}</scriptargs>
-        <scripturl>http://localhost/anvils/scripts/stop.sh</scripturl>
       </command>
     </sequence>
     <uuid>39732495-d52f-4cf7-a6dd-aac791c03b9a</uuid>

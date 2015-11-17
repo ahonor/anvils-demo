@@ -24,8 +24,22 @@
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
+        <script><![CDATA[#!/bin/bash
+#/ usage: start.sh ?dir?
+
+set -eu
+
+(( $# != 1 )) && {
+	grep '^#/ usage:' <"$0" | cut -c4- >&2
+	exit 2	
+}
+DIR=$1
+
+mkdir -p $DIR
+echo $$ > $DIR/pid
+
+echo "- Web started (pid=$$)" | tee -a $DIR/log]]></script>
         <scriptargs>${option.dir}</scriptargs>
-        <scripturl>http://localhost/anvils/scripts/start.sh</scripturl>
       </command>
     </sequence>
     <uuid>0e904d7c-a965-4f58-b9d3-fb8d02fb05fa</uuid>
