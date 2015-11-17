@@ -15,7 +15,7 @@
       <threadcount>1</threadcount>
     </dispatch>
     <executionEnabled>true</executionEnabled>
-    <group>catalog</group>
+    <group>scheduled</group>
     <id>6699386f-5512-4f56-8c34-b264ab04d7e6</id>
     <loglevel>INFO</loglevel>
     <name>nightly_catalog_rebuild</name>
