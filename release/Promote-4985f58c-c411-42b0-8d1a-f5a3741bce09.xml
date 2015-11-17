@@ -2,13 +2,13 @@
   <job>
     <context>
       <options preserveOrder='true'>
-        <option delimiter=',' enforcedvalues='true' multivalued='true' name='packages' required='true' valuesUrl='http://localhost/anvils/options/packages/${option.release.value}.json'>
+        <option delimiter=',' enforcedvalues='true' multivalued='true' name='packages' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/packages/${option.release.value}.json'>
           <description>packages versions</description>
         </option>
-        <option enforcedvalues='true' name='release' required='true' valuesUrl='http://localhost/anvils/options/releases/${option.repository.value}.json'>
+        <option enforcedvalues='true' name='release' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/releases/${option.repository.value}.json'>
           <description>release tag</description>
         </option>
-        <option enforcedvalues='true' name='repository' required='true' valuesUrl='http://localhost/anvils/options/repositories.json'>
+        <option enforcedvalues='true' name='repository' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/repositories.json'>
           <description>repository name</description>
         </option>
       </options>

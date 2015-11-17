@@ -2,7 +2,7 @@
   <job>
     <context>
       <options preserveOrder='true'>
-        <option enforcedvalues='true' name='dir' required='true' valuesUrl='http://localhost/anvils/options/anvils-dir.json' />
+        <option enforcedvalues='true' name='dir' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/anvils-dir.json' />
       </options>
     </context>
     <description>Check the status of anvils</description>
