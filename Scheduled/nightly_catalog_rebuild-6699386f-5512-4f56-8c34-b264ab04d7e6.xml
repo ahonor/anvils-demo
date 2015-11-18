@@ -43,14 +43,17 @@
         <script><![CDATA[#!/bin/bash
 set -eu
 CATALOG=$1
+CUSTOMER=$2
+LOCATION=$3
+
 echo "# Rebuild catalog: $CATALOG"
 echo ""
-echo "- customer: ${RD_NODE_ANVILS_CUSTOMER}"
-echo "- location: ${RD_NODE_ANVILS_LOCATION}"
-echo "- database: ${RD_NODE_NAME:-}"
+echo "- customer: ${CATALOG}"
+echo "- location: ${CUSTOMER}"
+echo "- database: @job.project@"
 echo "Completed."
 exit $?]]></script>
-        <scriptargs>${option.catalog}</scriptargs>
+        <scriptargs>${option.catalog} ${node.anvils-customer} ${node.anvils-location}</scriptargs>
       </command>
     </sequence>
     <uuid>6699386f-5512-4f56-8c34-b264ab04d7e6</uuid>
