@@ -1,0 +1,76 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option enforcedvalues='true' name='bu' required='true' value='forge' values='forge,material,press'>
+          <description>the business unit</description>
+        </option>
+      </options>
+    </context>
+    <description>Run the MIS reports</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>true</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>Scheduled</group>
+    <id>ce33c250-9122-4586-a806-bee77830eb8b</id>
+    <logging limit='100MB' limitAction='halt' />
+    <loglevel>INFO</loglevel>
+    <name>mis_reports</name>
+    <nodefilters>
+      <filter>tags: db</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <notification>
+      <onfailure>
+        <email recipients='bizops@anvils.com' />
+      </onfailure>
+      <onsuccess>
+        <email recipients='bizops@anvils.com' />
+      </onsuccess>
+    </notification>
+    <retry>1</retry>
+    <schedule>
+      <month month='*' />
+      <time hour='00' minute='01' seconds='0' />
+      <weekday day='*' />
+      <year year='*' />
+    </schedule>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <script><![CDATA[#!/bin/bash
+
+echo "Generated report for business unit: ${option.bu}"]]></script>
+        <scriptargs>${option.bu}</scriptargs>
+      </command>
+      <command>
+        <step-plugin type='flow-control'>
+          <configuration>
+            <entry key='fail' value='false' />
+            <entry key='halt' value='true' />
+            <entry key='status' value='NO_SUCH_REPORT' />
+          </configuration>
+        </step-plugin>
+      </command>
+      <command>
+        <step-plugin type='job-state-conditional'>
+          <configuration>
+            <entry key='condition' value='Equals' />
+            <entry key='executionState' value='Failed-with-retry' />
+            <entry key='fail' value='false' />
+            <entry key='halt' value='false' />
+            <entry key='jobName' value='Scheduled/nightly_catalog' />
+            <entry key='running' value='false' />
+            <entry key='status' value='FUN' />
+          </configuration>
+        </step-plugin>
+      </command>
+    </sequence>
+    <timeout>2h</timeout>
+    <uuid>ce33c250-9122-4586-a806-bee77830eb8b</uuid>
+  </job>
+</joblist>
