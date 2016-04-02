@@ -19,7 +19,7 @@
     <loglevel>INFO</loglevel>
     <name>Restart</name>
     <nodefilters>
-      <filter>tags: www</filter>
+      <filter>tags: www+anvils</filter>
     </nodefilters>
     <nodesSelectedByDefault>true</nodesSelectedByDefault>
     <scheduleEnabled>true</scheduleEnabled>
