@@ -1,0 +1,27 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>true</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <group>support-group</group>
+    <id>8ca9c203-0cbb-49e0-b96a-1a9c6db64267</id>
+    <loglevel>INFO</loglevel>
+    <name>get the date</name>
+    <nodefilters>
+      <filter>tags: www osVersion: 2.6.32-431.3.1.el6.x86_64</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>date</exec>
+      </command>
+    </sequence>
+    <uuid>8ca9c203-0cbb-49e0-b96a-1a9c6db64267</uuid>
+  </job>
+</joblist>
