@@ -1,0 +1,27 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='file' required='true' />
+        <option name='string' required='true' />
+      </options>
+    </context>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>5621854d-a4c5-4d67-9b7f-801aa36932ea</id>
+    <loglevel>INFO</loglevel>
+    <name>file-contains</name>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <node-step-plugin type='file-util:contains'>
+          <configuration>
+            <entry key='file' value='${option.file}' />
+            <entry key='string' value='${option.string}' />
+          </configuration>
+        </node-step-plugin>
+      </command>
+    </sequence>
+    <uuid>5621854d-a4c5-4d67-9b7f-801aa36932ea</uuid>
+  </job>
+</joblist>
