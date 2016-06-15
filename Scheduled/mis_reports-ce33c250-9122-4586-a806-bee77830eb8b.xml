@@ -5,9 +5,12 @@
         <option enforcedvalues='true' name='bu' required='true' value='forge' values='forge,material,press'>
           <description>the business unit</description>
         </option>
+        <option name='report-path' value='/home/db1/var/reports/${DATE:YYYYMMdd}.txt' />
       </options>
     </context>
-    <description>Run the MIS reports</description>
+    <description><![CDATA[Run the MIS reports.
+
+]]></description>
     <dispatch>
       <excludePrecedence>true</excludePrecedence>
       <keepgoing>true</keepgoing>
@@ -35,39 +38,47 @@
     <retry>1</retry>
     <schedule>
       <month month='*' />
-      <time hour='00' minute='01' seconds='0' />
+      <time hour='05' minute='01' seconds='0' />
       <weekday day='*' />
       <year year='*' />
     </schedule>
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
-        <script><![CDATA[#!/bin/bash
-
-echo "Generated report for business unit: ${option.bu}"]]></script>
-        <scriptargs>${option.bu}</scriptargs>
-      </command>
-      <command>
-        <step-plugin type='flow-control'>
-          <configuration>
-            <entry key='fail' value='false' />
-            <entry key='halt' value='true' />
-            <entry key='status' value='NO_SUCH_REPORT' />
-          </configuration>
-        </step-plugin>
-      </command>
-      <command>
         <step-plugin type='job-state-conditional'>
           <configuration>
             <entry key='condition' value='Equals' />
-            <entry key='executionState' value='Failed-with-retry' />
+            <entry key='executionState' value='Succeeded' />
             <entry key='fail' value='false' />
             <entry key='halt' value='false' />
-            <entry key='jobName' value='Scheduled/nightly_catalog' />
+            <entry key='jobName' value='Scheduled/nightly_catalog_rebuild' />
             <entry key='running' value='false' />
             <entry key='status' value='FUN' />
           </configuration>
         </step-plugin>
+      </command>
+      <command>
+        <description>Generate report</description>
+        <script><![CDATA[#!/bin/bash
+
+REPORT_PATH=$1
+
+set -eu
+
+[[ ! -d $(dirname $REPORT_PATH) ]] && mkdir -p $(dirname $REPORT_PATH)
+echo "Gathering report data ..."
+echo "Completed."
+echo "Successful: Generated report for business unit: @option.bu@" > $REPORT_PATH
+]]></script>
+        <scriptargs>${option.report-path}</scriptargs>
+      </command>
+      <command>
+        <node-step-plugin type='file-util:contains'>
+          <configuration>
+            <entry key='file' value='${option.report-path}' />
+            <entry key='string' value='Successful' />
+          </configuration>
+        </node-step-plugin>
       </command>
     </sequence>
     <timeout>2h</timeout>

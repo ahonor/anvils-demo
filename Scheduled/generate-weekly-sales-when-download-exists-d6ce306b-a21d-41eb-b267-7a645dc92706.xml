@@ -1,0 +1,43 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='bytes' required='true' value='300'>
+          <description>number of bytes contained in file</description>
+        </option>
+        <option name='file' required='true' value='/home/rundeck/var/downloads/report.dat'>
+          <description>file path</description>
+        </option>
+      </options>
+    </context>
+    <description>monitor the download dir for the sales data</description>
+    <executionEnabled>true</executionEnabled>
+    <group>Scheduled</group>
+    <id>d6ce306b-a21d-41eb-b267-7a645dc92706</id>
+    <loglevel>INFO</loglevel>
+    <name>generate-weekly-sales-when-download-exists</name>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <errorhandler>
+          <step-plugin type='flow-control'>
+            <configuration>
+              <entry key='fail' value='false' />
+              <entry key='halt' value='true' />
+              <entry key='status' value='NO_FILE' />
+            </configuration>
+          </step-plugin>
+        </errorhandler>
+        <jobref group='utils' name='file-exists'>
+          <arg line='-file ${option.file}' />
+        </jobref>
+      </command>
+      <command>
+        <jobref group='Scheduled/reports' name='weekly-sales' nodeStep='true'>
+          <arg line='-data-file ${option.file}' />
+        </jobref>
+      </command>
+    </sequence>
+    <uuid>d6ce306b-a21d-41eb-b267-7a645dc92706</uuid>
+  </job>
+</joblist>

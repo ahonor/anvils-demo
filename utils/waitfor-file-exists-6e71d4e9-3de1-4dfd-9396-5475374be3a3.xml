@@ -1,0 +1,33 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='file' required='true'>
+          <description>file path</description>
+        </option>
+        <option name='interval' value='30' />
+        <option name='maxtry' value='10' />
+      </options>
+    </context>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>utils</group>
+    <id>6e71d4e9-3de1-4dfd-9396-5475374be3a3</id>
+    <loglevel>INFO</loglevel>
+    <multipleExecutions>true</multipleExecutions>
+    <name>waitfor-file-exists</name>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <node-step-plugin type='waitfor:file-exists'>
+          <configuration>
+            <entry key='file' value='${option.file}' />
+            <entry key='interval' value='${option.interval}' />
+            <entry key='maxtry' value='${option.maxtry}' />
+          </configuration>
+        </node-step-plugin>
+      </command>
+    </sequence>
+    <uuid>6e71d4e9-3de1-4dfd-9396-5475374be3a3</uuid>
+  </job>
+</joblist>

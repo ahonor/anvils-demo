@@ -1,0 +1,35 @@
+<joblist>
+  <job>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>Scheduled/reports</group>
+    <id>80f61b3b-9a2b-4be8-b7b1-95e68a88e6ac</id>
+    <loglevel>INFO</loglevel>
+    <name>weekly-sales</name>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Print report</description>
+        <script><![CDATA[cat <<EOF
++======================================================================+
+|                         WEEKLY SALES REPORT                          |
++======================================================================+
+| Qty | Size |      Item             |  Unit price     |    Total      |
++-----+--------+---------------------+-----------------+---------------+
+|   3 | Med  | Propeller hat         |  15.00          |    45.00      |
+|   2 | XXL  | Spy vs spy trenchcoat |  50.00          |   100.00      |
+|  10 | Sm   | Rubber chicken        |   4.00          |    40.00      |
+|   1 | Uni  | Whacky glasses        |   2.00          |     2.00      |
+|  11 | L    | Groucho mustache      |   3.00          |    33.00      |
++======================================================================+
+|                                       Grand total    |   220.00      |
++======================================================================+
+
+EOF
+]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>80f61b3b-9a2b-4be8-b7b1-95e68a88e6ac</uuid>
+  </job>
+</joblist>

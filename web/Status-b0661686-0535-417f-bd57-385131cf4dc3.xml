@@ -2,7 +2,7 @@
   <job>
     <context>
       <options preserveOrder='true'>
-        <option enforcedvalues='true' name='dir' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/anvils-dir.json' />
+        <option enforcedvalues='true' name='dir' required='true' values='anvils' />
       </options>
     </context>
     <description>Check the status of anvils</description>
@@ -19,7 +19,7 @@
     <multipleExecutions>true</multipleExecutions>
     <name>Status</name>
     <nodefilters>
-      <filter>tags: www</filter>
+      <filter>tags: www+anvils</filter>
     </nodefilters>
     <nodesSelectedByDefault>true</nodesSelectedByDefault>
     <scheduleEnabled>true</scheduleEnabled>

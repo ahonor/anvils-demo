@@ -2,8 +2,8 @@
   <job>
     <context>
       <options preserveOrder='true'>
-        <option enforcedvalues='true' name='dir' required='true' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/anvils-dir.json' />
-        <option enforcedvalues='true' name='method' valuesUrl='https://rawgithub.com/ahonor/anvils-demo/master/options/stop-method.json' />
+        <option enforcedvalues='true' name='dir' required='true' values='anvils' />
+        <option enforcedvalues='true' name='method' values='anvils:stop,anvils:stop --force' />
       </options>
     </context>
     <description>restart the web servers</description>

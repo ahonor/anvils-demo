@@ -1,0 +1,25 @@
+<joblist>
+  <job>
+    <context>
+      <options preserveOrder='true'>
+        <option name='file' required='true'>
+          <description>file path</description>
+        </option>
+      </options>
+    </context>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <group>utils</group>
+    <id>343e7b01-98ea-41da-a3d1-55e1ddff2f00</id>
+    <loglevel>INFO</loglevel>
+    <multipleExecutions>true</multipleExecutions>
+    <name>file-exists</name>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>test -f ${option.file}</exec>
+      </command>
+    </sequence>
+    <uuid>343e7b01-98ea-41da-a3d1-55e1ddff2f00</uuid>
+  </job>
+</joblist>

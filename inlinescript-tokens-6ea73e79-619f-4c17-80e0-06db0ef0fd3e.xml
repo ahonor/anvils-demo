@@ -1,0 +1,40 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>true</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>6ea73e79-619f-4c17-80e0-06db0ef0fd3e</id>
+    <loglevel>INFO</loglevel>
+    <name>inlinescript-tokens</name>
+    <nodefilters>
+      <filter>tags: anvils+www</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <script><![CDATA[#!/bin/bash
+
+#env|grep RD_|sort
+CUSTOMER=$1
+
+echo "replacement token: node.anvils:customer=@node.anvils:customer@"
+
+if [[ "$CUSTOMER" == acme.com ]]
+then
+echo YAY
+else
+echo "FAIL: customer $CUSTOMER != acme.com"
+exit 1
+fi]]></script>
+        <scriptargs>${node.anvils:customer}</scriptargs>
+      </command>
+    </sequence>
+    <uuid>6ea73e79-619f-4c17-80e0-06db0ef0fd3e</uuid>
+  </job>
+</joblist>
