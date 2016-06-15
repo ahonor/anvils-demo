@@ -1,0 +1,26 @@
+<joblist>
+  <job>
+    <description></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>true</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>6506e637-5314-419b-a416-2d3b5bdbdbc2</id>
+    <loglevel>INFO</loglevel>
+    <name>check java</name>
+    <nodefilters>
+      <filter>anvils:customer: .* anvils:location: .* anvils:server-pool-id: .* anvils:server-pool: .*</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>ps auxww|grep java</exec>
+      </command>
+    </sequence>
+    <uuid>6506e637-5314-419b-a416-2d3b5bdbdbc2</uuid>
+  </job>
+</joblist>
